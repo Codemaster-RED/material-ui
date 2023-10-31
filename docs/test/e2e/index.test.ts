@@ -16,6 +16,15 @@ async function example() {
 }
 ```
 
+This function `sleep` is used to introduce a delay in the code execution. It takes a `timeoutMS` parameter which represents the number of milliseconds to sleep for. It returns a Promise that resolves once the sleep period is over.
+
+Example usage:
+
+```javascript
+const result = await sleep(500); // Sleep for 500 milliseconds
+console.log("Code executed after 500 ms of delay");
+```
+
 ### interface PlaywrightScreen
 
 ```javascript
@@ -37,6 +46,22 @@ const screen: PlaywrightScreen = {
 };
 ```
 
+This interface `PlaywrightScreen` defines a set of methods for interacting with elements in a Playwright screen. It contains the following methods:
+
+- `getByLabelText`: Retrieves an element based on label text.
+- `getByRole`: Retrieves an element based on role.
+- `getByText`: Retrieves an element based on text.
+- `getByTestId`: Retrieves an element based on test ID.
+
+Each method takes appropriate parameters and performs the necessary logic to retrieve the desired element.
+
+Example usage:
+
+```javascript
+const element = screen.getByLabelText("Username");
+element.click(); // Clicks on the element with the label "Username"
+```
+
 ### async function attemptGoto(page: playwright.Page, url: string): Promise<boolean>
 
 ```javascript
@@ -56,12 +81,28 @@ async function example(page) {
 }
 ```
 
+This asynchronous function `attemptGoto` is used to navigate to a URL with retries. It takes a Playwright page object and a URL string as parameters. It returns a Promise that resolves to a boolean indicating whether the navigation was successful or not.
+
+Example usage:
+
+```javascript
+const page = /* Get Playwright page object */;
+const url = 'http://example.com';
+const didNavigate = await attemptGoto(page, url);
+
+if (didNavigate) {
+  console.log('Successfully navigated to', url);
+} else {
+  console.log('Failed to navigate to', url);
+}
+```
+
 ## Dependencies
 
-- Please make sure to install the required dependencies before using the functions and interfaces in this module.
+Please make sure to install the required dependencies before using the functions and interfaces in this module.
 
-  - Chai: `npm install chai`
-  - Playwright: `npm install playwright`
+- Chai: `npm install chai`
+- Playwright: `npm install playwright`
 
 ## Flows
 
