@@ -1,8 +1,8 @@
-# TextField Module
+# TextField Module Documentation
 
 This module provides the TextField component, which is a text input component that can be used in React applications.
 
-**Dependencies**: 
+**Dependencies**:
 
 - `React`
 - `chai`
