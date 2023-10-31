@@ -1,94 +1,44 @@
-# TextField Module Documentation
+# TextField.js Documentation
 
-This module provides the TextField component, which is a text input component that can be used in React applications.
+This documentation provides an overview of the `TextField.js` module, including the purpose of the module, function/class documentation, code examples, external dependencies, and flow diagrams.
 
-**Dependencies**:
+## Overview
 
-- `React`
-- `chai`
-- `sinon`
-- `@mui/core`
-- `@mui/utils`
-
-To install the dependencies, run the following command:
-
-```bash
-npm install react chai sinon @mui/core @mui/utils
-```
+The `TextField.js` module is a React component that implements a text input field with various customization options. It provides functionality for rendering text fields, applying styles, and handling user interactions.
 
 ## Code Examples
 
-### Importing TextField
+### Render a Standard TextField
 
 ```javascript
-import TextField from '@mui/material/TextField';
-```
+import TextField from 'TextField';
 
-### Rendering a TextField component
-
-```javascript
+// Render a basic TextField component with standard variant
 <TextField variant="standard" />
 ```
 
-### Rendering a TextField component with a label
+### Render a Multiline TextField
 
 ```javascript
-<TextField label="Foo bar" variant="standard" />
+import TextField from 'TextField';
+
+// Render a TextField component with multiline option
+<TextField variant="standard" multiline />
 ```
 
-### Rendering a TextField component with a helper text
+### Render a TextField with Full Width
 
 ```javascript
-<TextField helperText="Foo bar" variant="standard" />
+import TextField from 'TextField';
+
+// Render a TextField component with full width
+<TextField variant="standard" fullWidth />
 ```
 
-### Rendering a TextField component with an outline
+## `describeConformance`
 
 ```javascript
-<TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label="label" required />
-```
-
-### Rendering a TextField component with additional props on the Input component
-
-```javascript
-<TextField InputProps={{ 'data-testid': 'InputComponent' }} variant="standard" />
-```
-
-### Disabling a TextField component
-
-```javascript
-<TextField disabled />
-```
-
-### Rendering a TextField component as a select input
-
-```javascript
-<TextField select variant="standard">
-  <option value="option1">Option 1</option>
-  <option value="option2">Option 2</option>
-</TextField>
-```
-
-## Functions
-
-### describeConformance(muiName, options)
-
-This function provides a way to test the conformance of the TextField component with the Material UI guidelines.
-
-- `muiName` (string): The name of the Material UI component being tested.
-- `options` (object): An object containing options for the test.
-  - `classes` (object): An object containing the CSS classes for the TextField component.
-  - `inheritComponent` (React component): The component that TextField should inherit.
-  - `render` (function): A function to render the TextField component.
-  - `muiName` (string): The name of the Material UI component being tested.
-  - `refInstanceof` (object): The expected instance of the ref.
-  - `testVariantProps` (object): An object containing variant props to test.
-  - `skip` (array): An array of strings representing test cases to skip.
-
-#### Example:
-
-```javascript
-describeConformance(<TextField variant="standard" />, {
+describeConformance(<TextField variant="standard" />, () => ({
   classes,
   inheritComponent: FormControl,
   render,
@@ -96,48 +46,160 @@ describeConformance(<TextField variant="standard" />, {
   refInstanceof: window.HTMLDivElement,
   testVariantProps: { variant: 'outlined' },
   skip: ['componentProp', 'componentsProp'],
-});
+}));
 ```
 
-### renderTextField(params)
+Description: The `describeConformance` function is used to test the component against a set of conformance requirements. It checks if the component meets the specified criteria.
 
-This function renders the TextField component with the provided parameters.
+Parameters:
 
-- `params` (object): An object containing parameters for rendering the component.
-  - `variant` (string): The variant of the TextField component.
-  - `multiline` (boolean): Whether the TextField component should support multiline input.
-  - `fullWidth` (boolean): Whether the TextField component should take up the full width of its container.
-  - `InputLabelProps` (object): Additional props for the InputLabel.
-  - `label` (string): The label text for the TextField component.
-  - `InputProps` (object): Additional props for the Input component.
-  - `disabled` (boolean): Whether the TextField component is disabled.
-  - `select` (boolean): Whether the TextField component should render as a select input.
-  - `SelectProps` (object): Additional props for the Select component.
+- `variant` (string) - The variant type of the TextField component.
 
-#### Example:
+Returns:
+
+- None.
+
+Example:
 
 ```javascript
-renderTextField({
-  variant: 'standard',
-  multiline: true,
-  fullWidth: true,
-  InputLabelProps: { className: 'foo' },
-  label: 'Foo bar',
-  InputProps: { 'data-testid': 'mui-input-base-root' },
-  disabled: true,
-  select: true,
-  SelectProps: { native: true },
+import TextField from 'TextField';
+
+describeConformance(<TextField variant="standard" />, () => ({
+  classes,
+  inheritComponent: FormControl,
+  render,
+  muiName: 'MuiTextField',
+  refInstanceof: window.HTMLDivElement,
+  testVariantProps: { variant: 'outlined' },
+  skip: ['componentProp', 'componentsProp'],
+}));
+```
+
+## Structure
+
+### Have an Input as the Only Child
+
+```javascript
+it('should have an input as the only child', () => {
+  // Render a TextField component with standard variant
+  const { getAllByRole } = render(<TextField variant="standard" />);
+
+  expect(getAllByRole('textbox')).to.have.lengthOf(1);
 });
 ```
 
-### handleClick()
+Description: This test case checks if the TextField component has an input element as its only child.
 
-This function is used in testing to count click events.
+Parameters:
 
-### getByRole(role, options)
+- None.
 
-This function is used in testing to retrieve an element by its role.
+Returns:
 
-### fireEvent.click(element)
+- None.
 
-This function is used in testing to simulate a click event on an element.
+Example:
+
+```javascript
+it('should have an input as the only child', () => {
+  const { getAllByRole } = render(<TextField variant="standard" />);
+
+  expect(getAllByRole('textbox')).to.have.lengthOf(1);
+});
+```
+
+### Forward Multiline Prop to Input
+
+```javascript
+it('should forward the multiline prop to Input', () => {
+  // Render a TextField component with multiline prop
+  const { getByRole } = render(<TextField variant="standard" multiline />);
+
+  expect(getByRole('textbox', { hidden: false })).to.have.class(inputBaseClasses.inputMultiline);
+});
+```
+
+Description: This test case checks if the multiline prop is correctly forwarded to the Input component of the TextField.
+
+Parameters:
+
+- None.
+
+Returns:
+
+- None.
+
+Example:
+
+```javascript
+it('should forward the multiline prop to Input', () => {
+  const { getByRole } = render(<TextField variant="standard" multiline />);
+
+  expect(getByRole('textbox', { hidden: false })).to.have.class(inputBaseClasses.inputMultiline);
+});
+```
+
+### Forward Full Width Prop to Input
+
+```javascript
+it('should forward the fullWidth prop to Input', () => {
+  // Render a TextField component with fullWidth prop
+  const { getByTestId } = render(
+    <TextField
+      variant="standard"
+      fullWidth
+      InputProps={{ 'data-testid': 'mui-input-base-root' }}
+    />,
+  );
+
+  expect(getByTestId('mui-input-base-root')).to.have.class(inputBaseClasses.fullWidth);
+});
+```
+
+Description: This test case checks if the fullWidth prop is correctly forwarded to the Input component of the TextField.
+
+Parameters:
+
+- None.
+
+Returns:
+
+- None.
+
+Example:
+
+```javascript
+it('should forward the fullWidth prop to Input', () => {
+  const { getByTestId } = render(
+    <TextField
+      variant="standard"
+      fullWidth
+      InputProps={{ 'data-testid': 'mui-input-base-root' }}
+    />,
+  );
+
+  expect(getByTestId('mui-input-base-root')).to.have.class(inputBaseClasses.fullWidth);
+});
+```
+
+## Dependencies
+
+The `TextField.js` module has the following external dependencies:
+
+- React
+- chai
+- sinon
+- @mui/material/FormControl
+- @mui/material/InputBase
+- @mui/material/MenuItem
+- @mui/material/OutlinedInput
+
+To install these dependencies, use the following command:
+
+```bash
+npm install react chai sinon @mui/material/FormControl @mui/material/InputBase @mui/material/MenuItem @mui/material/OutlinedInput
+```
+
+## Flows
+
+No flow diagrams are provided for this module.
