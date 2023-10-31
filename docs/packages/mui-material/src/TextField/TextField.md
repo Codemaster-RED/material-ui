@@ -1,120 +1,131 @@
-# `TextField.js` Documentation
+# TextField
 
-## Introduction
+The `TextField` module is a convenience wrapper for common use cases. It provides a simple abstraction on top of various components like `FormControl`, `InputLabel`, `FilledInput`, `OutlinedInput`, `Input`, and `FormHelperText`.
 
-The `TextField.js` module provides a convenient wrapper for common use cases involving text fields. It is a combination of multiple components such as `FormControl`, `InputLabel`, `FilledInput`, `OutlinedInput`, `Input`, and `FormHelperText`. This module allows users to easily create text fields with various configurations and styles.
+## Installation
 
-## Code Examples
+To use the `TextField` module, you need to have the `@mui/core` package installed. You can install it using npm or yarn:
 
-Here are some code examples that illustrate how to use the functions and classes defined in the `TextField.js` module:
-
-```javascript
-import TextField from './TextField';
-
-// Example 1: Basic usage of TextField
-const BasicTextField = () => {
-  return <TextField label="Name" />;
-};
-
-// Example 2: Text field with a helper text
-const TextFieldWithHelperText = () => {
-  return <TextField label="Email" helperText="Enter your email address" />;
-};
+```
+npm install @mui/core
 ```
 
-## `TextField` Class
+or
 
-The `TextField` class is a React component that represents a text field. It provides various configuration options and supports both single-line and multi-line inputs.
-
-### Constructor
-
-```javascript
-TextField(inProps, ref)
+```
+yarn add @mui/core
 ```
 
-- `inProps` (object): The props passed to the component.
-- `ref` (object): A reference to the component.
+Once installed, you can import the `TextField` module:
 
-### Parameters
+```javascript
+import TextField from '@mui/core/TextField';
+```
 
-- `autoComplete` (string): This prop helps users to fill forms faster, especially on mobile devices.
-- `autoFocus` (boolean): If `true`, the `input` element is focused during the first mount. (Default: `false`)
-- `children` (node): The content of the text field.
-- `className` (string): A CSS class to apply to the text field.
-- `color` (string): The color of the component. It supports both default and custom theme colors. (Default: `primary`)
-- `defaultValue` (any): The default value of the text field.
-- `disabled` (boolean): If `true`, the component is disabled. (Default: `false`)
-- `error` (boolean): If `true`, the label is displayed in an error state. (Default: `false`)
-- `FormHelperTextProps` (object): Props applied to the `FormHelperText` element.
-- `fullWidth` (boolean): If `true`, the input will take up the full width of its container. (Default: `false`)
-- `helperText` (node): The helper text content.
-- `id` (string): The id of the `input` element.
-- `InputLabelProps` (object): Props applied to the `InputLabel` element.
-- `inputProps` (object): Attributes applied to the `input` element.
-- `InputProps` (object): Props applied to the `Input` element.
-- `inputRef` (object): A reference to the `input` element.
-- `label` (node): The label content.
-- `margin` (string): If `dense` or `normal`, will adjust vertical spacing of this and contained components. (Default: `none`)
-- `maxRows` (number|string): Maximum number of rows to display when multiline option is set to true.
-- `minRows` (number|string): Minimum number of rows to display when multiline option is set to true.
-- `multiline` (boolean): If `true`, a `textarea` element is rendered instead of an input. (Default: `false`)
-- `name` (string): Name attribute of the `input` element.
-- `onBlur` (function): Callback fired when the text field loses focus.
-- `onChange` (function): Callback fired when the value is changed.
-- `onClick` (function): Callback fired when the text field is clicked.
-- `onFocus` (function): Callback fired when the text field gains focus.
-- `placeholder` (string): The short hint displayed in the `input` before the user enters a value.
-- `required` (boolean): If `true`, the label is displayed as required and the `input` element is required. (Default: `false`)
-- `rows` (number|string): Number of rows to display when multiline option is set to true.
-- `select` (boolean): If `true`, render a `Select` element instead of an input. (Default: `false`)
-- `SelectProps` (object): Props applied to the `Select` element.
-- `size` (string): The size of the component.
-- `sx` (array|object|function): The system prop that allows defining system overrides as well as additional CSS styles.
-- `type` (string): Type of the `input` element.
-- `value` (any): The value of the `input` element, required for a controlled component.
-- `variant` (string): The variant to use. (Default: `outlined`)
+## Usage
 
-### Example
+The `TextField` module can be used to create various types of text fields. It supports customization of props and styles to fit your needs.
 
 ```javascript
 const MyTextField = () => {
-  const handleOnChange = (event) => {
-    console.log(event.target.value);
-  };
-
   return (
-    <TextField
-      label="Name"
-      defaultValue="John"
-      helperText="Enter your name"
-      onChange={handleOnChange}
-    />
+    <TextField label="Username" variant="outlined" />
   );
-};
+}
 ```
 
-## Dependencies
+## API
 
-This module has the following external dependencies:
+### TextField Props
 
-- `react`
-- `prop-types`
-- `clsx`
-- `@mui/base/composeClasses`
-- `@mui/utils`
-- `../Input`
-- `../FilledInput`
-- `../OutlinedInput`
-- `../InputLabel`
-- `../FormControl`
-- `../FormHelperText`
-- `../Select`
-- `./textFieldClasses`
+- `autoComplete` (string): This prop helps users to fill forms faster, especially on mobile devices. It follows the autofill specification.
 
-Make sure to include these dependencies in your project and import them before using the `TextField` component.
+- `autoFocus` (bool): If `true`, the `input` element is focused during the first mount.
 
-## Flows
+- `children` (node): The content to be rendered within the `TextField` component.
 
-- There are no specific flow diagrams provided in the code diff. However, the logic of the `TextField` component can be inferred from the code and documentation.
+- `className` (string): Additional CSS classes to apply to the `TextField` component.
 
-Please refer to the [TypeScript definition](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/TextField/TextField.d.ts) or the [source code](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/TextField/TextField.js) for more information about the `TextField` component.
+- `color` (string): The color of the component. It supports both default and custom theme colors.
+
+- `defaultValue` (any): The default value of the `TextField`. Use when the component is not controlled.
+
+- `disabled` (bool): If `true`, the `TextField` component is disabled.
+
+- `error` (bool): If `true`, the `TextField` component is displayed in an error state.
+
+- `FormHelperTextProps` (object): Props applied to the `FormHelperText` component.
+
+- `fullWidth` (bool): If `true`, the `TextField` component takes up the full width of its container.
+
+- `helperText` (node): The helper text displayed below the `TextField` component.
+
+- `id` (string): The id of the `input` element. Use this prop to make the `label` and `helperText` accessible for screen readers.
+
+- `InputLabelProps` (object): Props applied to the `InputLabel` component.
+
+- `inputProps` (object): [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+
+- `InputProps` (object): Props applied to the `Input` component.
+
+- `inputRef` (ref): A ref to the `input` element.
+
+- `label` (node): The label for the `TextField` component.
+
+- `margin` (enum): The margin of the component. Options are `dense`, `none`, or `normal`.
+
+- `maxRows` (number|string): The maximum number of rows to display when `multiline` option is set to `true`.
+
+- `minRows` (number|string): The minimum number of rows to display when `multiline` option is set to `true`.
+
+- `multiline` (bool): If `true`, a `textarea` element is rendered instead of an input.
+
+- `name` (string): The name attribute of the `input` element.
+
+- `onBlur` (func): Callback fired when the `TextField` loses focus.
+
+- `onChange` (func): Callback fired when the value of the `TextField` is changed.
+
+- `onClick` (func): Callback fired when the `TextField` is clicked.
+
+- `onFocus` (func): Callback fired when the `TextField` receives focus.
+
+- `placeholder` (string): The short hint displayed in the `input` before the user enters a value.
+
+- `required` (bool): If `true`, the `TextField` is displayed as required and the `input` element is required.
+
+- `rows` (number|string): The number of rows to display when `multiline` option is set to `true`.
+
+- `select` (bool): If `true`, a `Select` element is rendered while passing the `input` element to `Select` as the `input` parameter.
+
+- `SelectProps` (object): Props applied to the `Select` component.
+
+- `size` (string): The size of the `TextField` component.
+
+- `sx` (object|function|array): The system prop that allows defining system overrides as well as additional CSS styles.
+
+- `type` (string): The type of the `input` element. It should be a valid HTML5 input type.
+
+- `value` (any): The value of the `input` element. Required for a controlled component.
+
+- `variant` (string): The variant of the `TextField` component. Options are `filled`, `outlined`, or `standard`.
+
+## Example
+
+```javascript
+import TextField from '@mui/core/TextField';
+
+const MyTextField = () => {
+  return (
+    <TextField
+      label="Username"
+      variant="outlined"
+      helperText="Enter your username"
+      fullWidth
+      required
+    />
+  );
+}
+```
+
+In the above example, a `TextField` component is rendered with a label "Username". The `variant` prop is set to `outlined`, and the `helperText` prop provides additional information to the user. The `fullWidth` and `required` props are also set to `true`.
