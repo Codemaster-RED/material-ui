@@ -1,10 +1,10 @@
-## Code Diff Documentation
+# Code Diff Documentation
 
 This documentation provides an overview of the code diff.
 
-### Code Examples
+## Code Examples
 
-#### Example 1: 
+### Example 1: 
 
 ```javascript
 // Function usage example
@@ -12,7 +12,7 @@ const result = myFunction(1, 2);
 console.log(result);
 ```
 
-#### Example 2:
+### Example 2:
 
 ```javascript
 // Class usage example
@@ -20,9 +20,9 @@ const myClassInstance = new MyClass();
 myClassInstance.myMethod();
 ```
 
-### Function Documentation
+## Function Documentation
 
-#### myFunction(param1, param2)
+### myFunction(param1, param2)
 
 Description of what this function does.
 
@@ -39,13 +39,13 @@ const result = myFunction(1, 2);
 // Explanation of the example.
 ```
 
-### Class Documentation
+## Class Documentation
 
-#### MyClass
+### MyClass
 
 Description of the class.
 
-##### myMethod()
+#### myMethod()
 
 Description of what this method does.
 
@@ -63,10 +63,10 @@ const myClassInstance = new MyClass();
 myClassInstance.myMethod();
 ```
 
-### Dependencies
+## Dependencies
 
 - Mention any external dependencies here.
 
-### Flows
+## Flows
 
 - Analyze the functions and classes and provide text-based flow diagrams to help understand the logic of more complex functions.
