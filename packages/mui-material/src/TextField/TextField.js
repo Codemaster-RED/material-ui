@@ -15,7 +15,7 @@ import FormHelperText from '../FormHelperText';
 import Select from '../Select';
 import { getTextFieldUtilityClass } from './textFieldClasses';
 
-// component variants
+// component variants for the component
 const variantComponent = {
   standard: Input,
   filled: FilledInput,
